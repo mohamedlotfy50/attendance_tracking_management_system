@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".MainActivity"
+    android:background="@drawable/gradient_background">
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logo"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/logo"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="81dp" />
+    <TextView
+        android:layout_marginTop="20dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="login to"
+        android:layout_below="@+id/logo"
+        android:layout_marginBottom="10dp"
+
+        android:layout_centerHorizontal="true"
+        android:id="@+id/loginTo"
+        android:textColor="@color/white"
+        android:textSize="27dp"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="81dp" />
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginTo"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:text="Attendance System"
+        android:textColor="@color/white"
+
+        android:textSize="27dp"
+        tools:layout_editor_absoluteX="125dp"
+        tools:layout_editor_absoluteY="81dp" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appName"
+        android:layout_marginTop="-37dp"
+        android:background="@drawable/rounded_rectangle_border"
+        android:orientation="vertical"
+
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="22dp"
+        tools:layout_editor_absoluteX="73dp"
+        tools:layout_editor_absoluteY="306dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+
+            android:text="Email" />
+
+        <EditText
+            android:background="@drawable/rounded_corner_edittext"
+    android:padding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+
+            android:text="Password" />
+
+        <EditText
+            android:padding="12dp"
+            android:background="@drawable/rounded_corner_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp"
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp"
+
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Forgot?"
+            android:textColor="#707070"
+
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_style"
+            android:text="Login" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
