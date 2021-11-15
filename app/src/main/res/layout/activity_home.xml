@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/grad_layout"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,8 +20,9 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavView"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="56dp"
+        android:background="@drawable/rounded_corners"
         app:itemIconTint="@color/icon_color1"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"

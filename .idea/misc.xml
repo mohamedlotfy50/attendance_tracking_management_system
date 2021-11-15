@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/drawable/account.xml" value="0.19427083333333334" />
+        <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/drawable/application.xml" value="0.18020833333333333" />
         <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/drawable/grad_layout.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/drawable/home.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/drawable/logout.xml" value="0.19427083333333334" />
+        <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/drawable/rounded_button.xml" value="0.19427083333333334" />
+        <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/drawable/rounded_corners.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/layout/activity_home.xml" value="0.1921875" />
         <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/layout/activity_main.xml" value="0.178125" />
         <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/layout/fragment_employees.xml" value="0.1921875" />
