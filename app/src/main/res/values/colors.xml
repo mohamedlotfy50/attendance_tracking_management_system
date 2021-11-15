@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="icon_color">#3F8DCD</color>
     <color name="button_blue">#9CC0E0</color>
+    <color name="blue_btn">#04BCFF</color>
 </resources>
