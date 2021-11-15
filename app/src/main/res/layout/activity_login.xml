@@ -9,27 +9,28 @@ xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/gradient_background">
 
     <TextView
-        android:layout_marginTop="40dp"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logo"
         android:layout_centerHorizontal="true"
-        android:id="@+id/logo"
+        android:layout_marginTop="40dp"
+        android:text="@string/logo"
         android:textColor="@color/white"
         android:textSize="50dp"
         tools:layout_editor_absoluteX="125dp"
         tools:layout_editor_absoluteY="81dp" />
+
     <TextView
-        android:layout_marginTop="20dp"
+        android:id="@+id/loginTo"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="login to"
         android:layout_below="@+id/logo"
-        android:layout_marginBottom="10dp"
-
         android:layout_centerHorizontal="true"
-        android:id="@+id/loginTo"
+        android:layout_marginTop="20dp"
+
+        android:layout_marginBottom="10dp"
+        android:text="@string/Loginto"
         android:textColor="@color/white"
         android:textSize="27dp"
         tools:layout_editor_absoluteX="125dp"
@@ -43,7 +44,7 @@ xmlns:tools="http://schemas.android.com/tools"
 
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
-        android:text="Attendance System"
+        android:text="@string/attendance_system"
         android:textColor="@color/white"
 
         android:textSize="27dp"
@@ -69,7 +70,7 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_height="wrap_content"
             android:layout_marginBottom="9dp"
 
-            android:text="Email" />
+            android:text="@string/email" />
 
         <EditText
             android:background="@drawable/rounded_corner_edittext"
@@ -83,7 +84,7 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_height="wrap_content"
             android:layout_marginBottom="9dp"
 
-            android:text="Password" />
+            android:text="@string/password" />
 
         <EditText
             android:padding="12dp"
@@ -93,13 +94,14 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_marginBottom="35dp"
 
             />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="35dp"
 
             android:background="?android:attr/selectableItemBackground"
-            android:text="Forgot?"
+            android:text="@string/forgot"
             android:textColor="#707070"
 
             />
