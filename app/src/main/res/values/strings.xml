@@ -12,4 +12,7 @@
     <string name="logo">Logo</string>
     <string name="Loginto">Login to</string>
     <string name="attendance_system">Attendance System</string>
+    <string name="username">User name</string>
+    <string name="phonenum">Phone Number</string>
+    <string name="role">Role</string>
 </resources>
