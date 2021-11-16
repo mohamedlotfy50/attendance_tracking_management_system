@@ -11,7 +11,7 @@
         android:id="@+id/titlee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/add"
         android:textColor="@color/white"
@@ -29,7 +29,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/username"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -43,7 +43,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/phonenum"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/role"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/email"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
     <EditText
         android:id="@+id/username_edttxt"
         android:layout_width="316dp"
-        android:layout_height="48dp"
+        android:layout_height="42dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/rounded_corner_edittext"
@@ -120,7 +120,7 @@
     <EditText
         android:id="@+id/phonenum_edttxt"
         android:layout_width="316dp"
-        android:layout_height="48dp"
+        android:layout_height="42dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/rounded_corner_edittext"
@@ -128,14 +128,13 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/usernametxt"
+        app:layout_constraintStart_toStartOf="@+id/email_edttxt"
         app:layout_constraintTop_toBottomOf="@+id/phonenumtxt" />
 
     <EditText
         android:id="@+id/email_edttxt"
         android:layout_width="316dp"
-        android:layout_height="48dp"
+        android:layout_height="42dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
         android:background="@drawable/rounded_corner_edittext"
@@ -149,14 +148,25 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="316dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="50dp"
+        android:layout_height="42dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="50dp"
         android:background="@drawable/rounded_corner_edittext"
         android:backgroundTint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/phonenum_edttxt"
+        app:layout_constraintStart_toStartOf="@+id/phonenum_edttxt"
         app:layout_constraintTop_toBottomOf="@+id/phonenumtxt2" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="256dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/blue_btn"
+        android:padding="15dp"
+        android:text="@string/addemployee"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

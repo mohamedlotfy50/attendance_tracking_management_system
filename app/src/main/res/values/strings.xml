@@ -15,4 +15,5 @@
     <string name="username">User name</string>
     <string name="phonenum">Phone Number</string>
     <string name="role">Role</string>
+    <string name="addemployee">Add Employee</string>
 </resources>
