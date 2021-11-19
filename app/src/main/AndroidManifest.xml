@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Attendance_tracking_management_system">
         <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:exported="true"
+            android:label="@string/title_activity_login" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true" />
         <activity

@@ -18,11 +18,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+        Intent i = new Intent(MainActivity.this,LoginActivity.class);
+
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(intent);
+
+
+                    startActivity(i);
             }
         });
     }
