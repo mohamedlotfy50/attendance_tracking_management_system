@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.attendance_tracking_management_system">
+    package="com.example.attendance_tracking_management_system" >
 
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Attendance_tracking_management_system">
+        android:theme="@style/Theme.Attendance_tracking_management_system" >
+        <activity
+            android:name=".user_info"
+            android:exported="true"
+            android:label="@string/title_activity_user_info"
+            android:theme="@style/Theme.Attendance_tracking_management_system.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"
             android:exported="true"
-            android:label="@string/title_activity_login" />
-
+            android:label="login"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            tools:ignore="MissingClass">
+            tools:ignore="MissingClass" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
