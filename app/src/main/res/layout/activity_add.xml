@@ -11,7 +11,7 @@
         android:id="@+id/titlee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/add"
         android:textColor="@color/white"
@@ -24,7 +24,7 @@
         android:id="@+id/usernametxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="190dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/username"
@@ -38,8 +38,8 @@
         android:id="@+id/phonenumtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="140dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="150dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/phonenum"
         android:textColor="@color/white"
@@ -50,7 +50,22 @@
         app:layout_constraintTop_toBottomOf="@+id/email_edttxt" />
 
     <TextView
-        android:id="@+id/phonenumtxt2"
+        android:id="@+id/passwordtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="180dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/password"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    <TextView
+        android:id="@+id/roleSpin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -83,7 +98,7 @@
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/transperent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +116,8 @@
         app:layout_constraintEnd_toEndOf="@+id/image"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="@+id/image"
-        app:srcCompat="@drawable/ic_baseline_add_24" />
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/username_edttxt"
@@ -115,7 +131,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/usernametxt"
-        app:layout_constraintTop_toBottomOf="@+id/usernametxt" />
+        app:layout_constraintTop_toBottomOf="@+id/usernametxt"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/phonenum_edttxt"
@@ -129,7 +146,23 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/email_edttxt"
-        app:layout_constraintTop_toBottomOf="@+id/phonenumtxt" />
+        app:layout_constraintTop_toBottomOf="@+id/phonenumtxt"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/passwordedttxt"
+        android:layout_width="316dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/rounded_corner_edittext"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/passwordtxt"
+        app:layout_constraintTop_toBottomOf="@+id/passwordtxt"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/email_edttxt"
@@ -140,21 +173,23 @@
         android:background="@drawable/rounded_corner_edittext"
         android:backgroundTint="@color/white"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textWebEmailAddress|textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/emailtxt"
-        app:layout_constraintTop_toBottomOf="@+id/emailtxt" />
+        app:layout_constraintTop_toBottomOf="@+id/emailtxt"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Spinner
         android:id="@+id/spinner"
+        style="@style/Widget.AppCompat.DropDownItem.Spinner"
         android:layout_width="316dp"
         android:layout_height="42dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_corner_edittext"
-        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/phonenum_edttxt"
         app:layout_constraintStart_toStartOf="@+id/phonenum_edttxt"
-        app:layout_constraintTop_toBottomOf="@+id/phonenumtxt2" />
+        app:layout_constraintTop_toBottomOf="@+id/roleSpin"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/buttonAdd"
