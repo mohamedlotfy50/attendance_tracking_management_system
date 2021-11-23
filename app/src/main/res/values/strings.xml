@@ -1,13 +1,7 @@
 <resources>
     <string name="app_name">attendance_tracking_management_system</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <
-    <
-    <
-    <
-    <
-    <
-    < HEAD
+
     <string name="title_activity_login">LoginActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -42,5 +36,4 @@
     <string name="role">Role</string>
     <string name="addemployee">Add Employee</string>
     <string name="title_activity_user_info">user_info</string>
-    >>>>>>> f5383408c29dc01b6535337728c6a1446cfa732e
 </resources>
