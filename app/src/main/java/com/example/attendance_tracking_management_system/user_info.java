@@ -13,7 +13,7 @@ import com.example.attendance_tracking_management_system.databinding.ActivityUse
 public class user_info extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-private ActivityUserInfoBinding binding;
+    private ActivityUserInfoBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

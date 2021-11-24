@@ -20,79 +20,149 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/usernametxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="190dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/username"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="32dp"
+        android:isScrollContainer="true"
+        android:orientation="vertical"
+        android:weightSum="12"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAdd"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
+        app:layout_constraintTop_toBottomOf="@+id/image">
 
-    <TextView
-        android:id="@+id/phonenumtxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="150dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/phonenum"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_edttxt" />
+        <TextView
+            android:id="@+id/usernametxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="190dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/username"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/passwordtxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="180dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/password"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        <EditText
+            android:id="@+id/username_edttxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_corner_edittext"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/roleSpin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="240dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/role"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phonenum_edttxt" />
+        <TextView
+            android:id="@+id/emailtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/email"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/emailtxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="240dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/email"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_edttxt" />
+        <EditText
+            android:id="@+id/email_edttxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_edittext"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="textWebEmailAddress|textPersonName"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/phonenumtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/phonenum"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/phonenum_edttxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_edittext"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/roleSpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/role"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_edittext"
+            tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/passwordtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/password"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/passwordedttxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_edittext"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="textPersonName|textWebPassword"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/passcontxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/passcon"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/paascon_edttxt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_corner_edittext"
+            android:backgroundTint="@color/white"
+            android:ems="10"
+            android:inputType="textPersonName|textPassword"
+            android:minHeight="48dp"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/image"
@@ -119,83 +189,11 @@
         app:srcCompat="@drawable/ic_baseline_add_24"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <EditText
-        android:id="@+id/username_edttxt"
-        android:layout_width="316dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/rounded_corner_edittext"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/usernametxt"
-        app:layout_constraintTop_toBottomOf="@+id/usernametxt"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/phonenum_edttxt"
-        android:layout_width="316dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/rounded_corner_edittext"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/email_edttxt"
-        app:layout_constraintTop_toBottomOf="@+id/phonenumtxt"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/passwordedttxt"
-        android:layout_width="316dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/rounded_corner_edittext"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/passwordtxt"
-        app:layout_constraintTop_toBottomOf="@+id/passwordtxt"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/email_edttxt"
-        android:layout_width="316dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/rounded_corner_edittext"
-        android:backgroundTint="@color/white"
-        android:ems="10"
-        android:inputType="textWebEmailAddress|textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/emailtxt"
-        app:layout_constraintTop_toBottomOf="@+id/emailtxt"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        style="@style/Widget.AppCompat.DropDownItem.Spinner"
-        android:layout_width="316dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_corner_edittext"
-        app:layout_constraintEnd_toEndOf="@+id/phonenum_edttxt"
-        app:layout_constraintStart_toStartOf="@+id/phonenum_edttxt"
-        app:layout_constraintTop_toBottomOf="@+id/roleSpin"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="256dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/blue_btn"
         android:padding="15dp"
         android:text="@string/addemployee"
