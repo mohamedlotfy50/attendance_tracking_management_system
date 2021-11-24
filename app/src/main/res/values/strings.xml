@@ -37,5 +37,9 @@
     <string name="addemployee">Add Employee</string>
     <string name="title_activity_user_info">user_info</string>
     <string name="passcon">Confirm Password</string>
+    <string name="all">All</string>
+    <string name="dp1">DP1</string>
+    <string name="dp2">DP2</string>
+    <string name="department">Department</string>
 
 </resources>
