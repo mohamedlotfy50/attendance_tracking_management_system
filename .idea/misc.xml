@@ -27,6 +27,7 @@
         <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/layout/fragment_settings.xml" value="0.1921875" />
         <entry key="..\:/Users/nasif/Documents/attendance_tracking_management_system/app/src/main/res/menu/menu_nav_bar.xml" value="0.1921875" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/accept_style.xml" value="0.2703125" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/avatare_circle.xml" value="0.17552083333333332" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/button_gradient.xml" value="0.2703125" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/button_pressed.xml" value="0.2703125" />
@@ -40,6 +41,7 @@
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/gradient_button_active.xml" value="0.2703125" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/home.xml" value="0.25364583333333335" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17708333333333334" />
+        <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/reject_style.xml" value="0.2703125" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/rounded_corner_edittext.xml" value="0.2703125" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/rounded_corner_rectangle.xml" value="0.2703125" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/drawable/rounded_rectangle_border.xml" value="0.14635416666666667" />
@@ -48,7 +50,7 @@
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_add.xml" value="0.16" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_employer_info.xml" value="0.2" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_home.xml" value="0.176" />
-        <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_landing_page.xml" value="0.4" />
+        <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_landing_page.xml" value="0.264" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_login2.xml" value="0.2" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_main.xml" value="0.11499493414387031" />

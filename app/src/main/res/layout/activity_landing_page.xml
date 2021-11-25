@@ -46,16 +46,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="79dp" />
+        app:layout_constraintGuide_begin="76dp" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="75dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="30dp"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="84dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/avatar"
+
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:srcCompat="@drawable/avatar" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView8"
@@ -70,7 +73,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
@@ -86,95 +88,254 @@
         android:textSize="16dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.19"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/rounded_corner_rectangle"
+            android:orientation="vertical"
+            android:paddingVertical="20dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+
+                android:textColor="#306FAD"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Attendance"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/rounded_corner_rectangle"
+            android:orientation="vertical"
+            android:paddingVertical="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="#306FAD"
+                android:textSize="20dp"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Absent"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1.5"
+            android:background="@drawable/rounded_corner_rectangle"
+            android:orientation="vertical"
+            android:paddingVertical="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="#306FAD"
+
+                android:textSize="20dp"
+                android:textStyle="bold"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Requests"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner_rectangle"
-        android:orientation="vertical"
-android:paddingVertical="10dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="256dp">
+        android:layout_marginTop="32dp"
+        android:text="Leaving requests"
+        android:textColor="#fff"
 
-        <TextView
+        android:textSize="17dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="271dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Attendance"
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="271dp" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="69dp"
-        android:layout_height="58dp"
-        android:background="@drawable/rounded_corner_rectangle"
-        android:orientation="vertical"
-        android:paddingVertical="10dp"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="257dp">
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="271dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Absent"
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="271dp" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner_rectangle"
-        android:orientation="vertical"
-        android:paddingVertical="10dp"
-        tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="256dp">
+        app:barrierDirection="top" />
 
-        <TextView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="241dp" />
 
-            android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.1">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:layout_gravity="center"
 
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="271dp" />
+            app:cardBackgroundColor="#80FFFFFF"
+            app:cardCornerRadius="12dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Requests"
-            tools:layout_editor_absoluteX="51dp"
-            tools:layout_editor_absoluteY="271dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp">
 
+               <LinearLayout
+                   android:orientation="horizontal"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:layout_width="75dp"
+                       android:layout_height="74dp"
+                       android:src="@drawable/avatar" />
+                   <LinearLayout
+                       android:orientation="vertical"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
 
-    </LinearLayout>
+                       <TextView
+                           android:layout_width="wrap_content"
 
+                           android:layout_height="wrap_content"
 
+                           android:text="User Name"
+                           android:textColor="#163973"
+                           android:textSize="18dp"
+                           android:textStyle="bold"
+ />
+
+                       <TextView
+                           android:layout_width="wrap_content"
+
+                           android:layout_height="wrap_content"
+
+                           android:text="Department"
+
+                           android:textColor="@color/white"
+                           android:textSize="16dp"
+ />
+                   </LinearLayout>
+               </LinearLayout>
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="asdsa"
+                    android:layout_marginVertical="5dp"
+                    android:textColor="#000"
+                    android:textSize="16dp" />
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_marginVertical="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:imeOptions="actionNext"
+                    android:hint="Enter your email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:nextFocusForward="@id/password"
+                    android:padding="12dp" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="wrap_content"
+
+                        android:background="@drawable/accept_style"
+                        android:text="Accept"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                        android:layout_weight="1"
+
+                        android:layout_height="wrap_content"
+                    android:background="@drawable/reject_style"
+                    android:text="Reject"
+                    android:textColor="@color/white" /></LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
