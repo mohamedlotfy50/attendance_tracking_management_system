@@ -90,9 +90,7 @@
             android:nextFocusForward="@id/password"
             android:padding="12dp" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="20dp" />
+
 
         <TextView
             android:layout_width="wrap_content"
