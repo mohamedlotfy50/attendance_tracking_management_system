@@ -306,7 +306,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_corner_edittext"
                     android:imeOptions="actionNext"
-                    android:hint="Enter your email"
+                    android:hint="reason"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:nextFocusForward="@id/password"
