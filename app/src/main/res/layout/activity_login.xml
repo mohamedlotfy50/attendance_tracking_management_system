@@ -10,30 +10,16 @@
     android:paddingRight="20dp">
 
     <TextView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Logo"
-        android:textColor="@color/white"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/loginTo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
 
         android:id="@+id/loginTo"
         android:layout_width="91dp"
         android:layout_height="63dp"
         android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="login to"
         android:textColor="@color/white"
         android:textSize="27dp"
-        app:layout_constraintBottom_toTopOf="@+id/appName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
@@ -83,13 +69,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner_edittext"
-            android:imeOptions="actionNext"
             android:hint="Enter your email"
+            android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:nextFocusForward="@id/password"
             android:padding="12dp" />
-
 
 
         <TextView
@@ -100,18 +85,17 @@
             android:text="Password" />
 
         <EditText
-            android:maxLines="1"
-            android:hint="Enter your password"
             android:id="@+id/password"
-            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner_edittext"
-            android:padding="12dp"
+            android:hint="Enter your password"
             android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:padding="12dp"
 
             />
-
 
 
         <Button
@@ -126,7 +110,6 @@
             />
 
 
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
@@ -136,6 +119,16 @@
             android:textColor="@color/white" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="196dp"
+        android:layout_marginVertical="20dp"
+        android:layout_height="176dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
