@@ -21,8 +21,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.function.Function;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private Button btn;
@@ -40,7 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         btn = (Button) findViewById(R.id.loginBtn) ;
         btn.setOnClickListener(this);
-        email = (EditText) findViewById(R.id.email);
+        email = (EditText) findViewById(R.id.reason);
         password = (EditText) findViewById(R.id.password);
         firebaseAuth = FirebaseAuth.getInstance();
         pref = new PrefHelper(getBaseContext(),ConstName.sharedPref);
@@ -72,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if(isValidpassword&&isValidEmail){
-final ProgressDialog dialog = ProgressDialog.show(LoginActivity.this,"Login","Loading....");
+        final ProgressDialog dialog = ProgressDialog.show(LoginActivity.this,"Login","Loading....");
 
             firebaseAuth.signInWithEmailAndPassword(emailTxt, passwordtxt).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 

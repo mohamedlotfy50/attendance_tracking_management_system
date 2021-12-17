@@ -49,16 +49,16 @@
         app:layout_constraintGuide_begin="77dp" />
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+    <ImageView
+        android:id="@+id/image3"
         android:layout_width="84dp"
         android:layout_height="87dp"
         android:layout_marginTop="29dp"
-        android:src="@drawable/avatar"
-
+        android:backgroundTint="@color/transperent"
         app:layout_constraintEnd_toStartOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:srcCompat="@drawable/ic_icon11_101144" />
 
     <TextView
         android:id="@+id/textView8"
@@ -112,11 +112,12 @@
 
             <TextView
 
+                android:id="@+id/attend_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="0"
 
+                android:text="0"
                 android:textColor="#306FAD"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -143,16 +144,16 @@
             android:paddingVertical="20dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/absent_num"
 
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="0"
                 android:textColor="#306FAD"
                 android:textSize="20dp"
-                android:textStyle="bold"
 
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -177,17 +178,17 @@
             android:paddingVertical="20dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/rqst_num"
 
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="0"
+
                 android:textColor="#306FAD"
-
                 android:textSize="20dp"
-                android:textStyle="bold"
 
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -254,85 +255,93 @@
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="10dp">
 
-               <LinearLayout
-                   android:orientation="horizontal"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-                   <de.hdodenhof.circleimageview.CircleImageView
-                       android:layout_width="75dp"
-                       android:layout_height="74dp"
-                       android:src="@drawable/avatar" />
-                   <LinearLayout
-                       android:orientation="vertical"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                       <TextView
-                           android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/image4"
+                        android:layout_width="75dp"
+                        android:layout_height="74dp"
+                        android:backgroundTint="@color/transperent"
+                        app:srcCompat="@drawable/ic_icon11_101144" />
 
-                           android:layout_height="wrap_content"
 
-                           android:text="User Name"
-                           android:textColor="#163973"
-                           android:textSize="18dp"
-                           android:textStyle="bold"
- />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                       <TextView
-                           android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
 
-                           android:layout_height="wrap_content"
+                            android:layout_height="wrap_content"
 
-                           android:text="Department"
+                            android:text="User Name"
+                            android:textColor="#163973"
+                            android:textSize="18dp"
+                            android:textStyle="bold" />
 
-                           android:textColor="@color/white"
-                           android:textSize="16dp"
- />
-                   </LinearLayout>
-               </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+
+                            android:text="Department"
+
+                            android:textColor="@color/white"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </LinearLayout>
 
                 <TextView
 
+                    android:id="@+id/description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="asdsa"
                     android:layout_marginVertical="5dp"
+                    android:text="asdsa"
                     android:textColor="#000"
                     android:textSize="16dp" />
+
                 <EditText
-                    android:id="@+id/email"
-                    android:layout_marginVertical="10dp"
+                    android:id="@+id/reason"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
                     android:background="@drawable/rounded_corner_edittext"
-                    android:imeOptions="actionNext"
                     android:hint="reason"
+                    android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:nextFocusForward="@id/password"
                     android:padding="12dp" />
+
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                     <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginRight="10dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
 
                         android:background="@drawable/accept_style"
                         android:text="Accept"
                         android:textColor="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="wrap_content"
-                        android:layout_weight="1"
-
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                    android:background="@drawable/reject_style"
-                    android:text="Reject"
-                    android:textColor="@color/white" /></LinearLayout>
+
+                        android:layout_weight="1"
+                        android:background="@drawable/reject_style"
+                        android:text="Reject"
+                        android:textColor="@color/white" />
+                </LinearLayout>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

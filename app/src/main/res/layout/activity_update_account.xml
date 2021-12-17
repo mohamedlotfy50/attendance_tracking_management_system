@@ -8,16 +8,31 @@
     tools:context=".UpdateAccountActivity">
 
     <Button
-        android:id="@+id/buttonAdd2"
-        android:layout_width="256dp"
-        android:layout_height="0dp"
+        android:id="@+id/buttonAdd3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/blue_btn"
         android:padding="15dp"
-        android:text="@string/addemployee"
+        android:text="@string/close"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAdd2" />
+
+    <Button
+        android:id="@+id/buttonAdd2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/blue_btn"
+        android:padding="15dp"
+        android:text="@string/update_account"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -127,7 +142,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/passwordedttxt"
+            android:id="@+id/passwordttxt"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_weight="1"
@@ -149,7 +164,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/paascon_edttxt"
+            android:id="@+id/passcon_edttxt"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_weight="1"

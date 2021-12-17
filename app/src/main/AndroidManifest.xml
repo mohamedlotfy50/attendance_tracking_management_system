@@ -13,6 +13,9 @@
             android:name=".UpdateAccountActivity"
             android:exported="true" />
         <activity
+            android:name=".AddActivity"
+            android:exported="true" />
+        <activity
             android:name=".user_info"
             android:exported="true"
             android:label="@string/title_activity_user_info"
