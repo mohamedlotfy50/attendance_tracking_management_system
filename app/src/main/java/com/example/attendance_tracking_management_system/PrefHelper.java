@@ -29,6 +29,9 @@ public class PrefHelper {
 
 
     }
+    public boolean keyExists(String key){
+        return shared.contains(key);
+    }
     public String getString(String key){
         return  shared.getString(key,null);
     }
