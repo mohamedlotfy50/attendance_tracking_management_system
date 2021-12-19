@@ -1,24 +1,30 @@
 package com.example.attendance_tracking_management_system;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,7 +32,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 public class AddActivity extends AppCompatActivity {
@@ -41,6 +54,8 @@ public class AddActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     //ProgressDialog dialog;
     FirebaseFirestore fStore;
+    Uri resultUri;
+    String imgUrl= "";
 
 
     private FirebaseFirestore db;
@@ -84,6 +99,15 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
+        add_imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent,1);
+            }
+        });
+
         add_Emp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,23 +127,114 @@ public class AddActivity extends AppCompatActivity {
                     dialog.setCanceledOnTouchOutside(false);
                     dialog.show();
 
+
+
                     fAuth.createUserWithEmailAndPassword(e_mail,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 UId = fAuth.getCurrentUser().getUid();
-                                UserModel userModel = new UserModel(UId,user_name,e_mail,department,phoneNumber,role,password);
-                                DocumentReference dr = fStore.collection("users").document(UId);
-                                Map<String,Object> user = userModel.toMap();
-                                dr.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        dialog.dismiss();
-                                        Intent intent = new Intent(AddActivity.this, HomeActivity.class);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        finish();
+                                //img logic
+                                if(resultUri != null){
+                                    final StorageReference filePath = FirebaseStorage.getInstance().getReference()
+                                            .child("Profile Images").child(UId);
+                                    Bitmap bitmap = null;
+
+                                    try{
+                                        bitmap = MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(),resultUri);
+                                    }catch (IOException e){
+                                        e.printStackTrace();
                                     }
-                                });
+                                    ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
+                                    bitmap.compress(Bitmap.CompressFormat.JPEG,50,BAOS);
+                                    byte[] data = BAOS.toByteArray();
+                                    filePath.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    Toast.makeText(getBaseContext() , uri.toString() , Toast.LENGTH_LONG).show();
+                                                    imgUrl = uri.toString();
+                                                    AddUserToFireBase(dialog);
+
+                                                }
+                                            });
+                                        }
+
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getBaseContext() , e.getMessage() , Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                    /*UploadTask uploadTask = filePath.putBytes(data);
+                                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                                        @Override
+                                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                                if(!task.isSuccessful()){
+                                                    throw task.getException();
+                                                }
+                                            return filePath.getDownloadUrl();
+                                        }
+                                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Uri> task) {
+                                            if (task.isSuccessful()) {
+                                                Uri downloadUri = task.getResult();
+                                                imgUrl = downloadUri.toString();
+                                                Toast.makeText(AddActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }});*/
+
+                                    /*filePath.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot ts) {
+                                            if(ts.getMetadata() != null && ts.getMetadata().getReference() != null){
+                                                Task<Uri> result = ts.getStorage().getDownloadUrl();
+                                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri uri) {
+                                                        imgUrl = uri.toString();
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(AddActivity.this,"Image Upload Failed",Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });*/
+
+                                    /*uploadTask.addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(AddActivity.this,"Image Upload Failed",Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot ts) {
+                                            if(ts.getMetadata() != null && ts.getMetadata().getReference() != null){
+                                                Task<Uri> result = ts.getStorage().getDownloadUrl();
+                                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri uri) {
+                                                        imgUrl = uri.toString();
+
+
+
+                                                    }
+                                                });
+                                            }
+                                        }
+                                    });*/
+                                }
+
+
                             }else{
                                 dialog.dismiss();
                                 Toast.makeText(getBaseContext(), "Failed to add Employee !", Toast.LENGTH_SHORT).show();
@@ -132,7 +247,49 @@ public class AddActivity extends AppCompatActivity {
         });
     }
 
-    private  boolean validateInputs(String name , String e_mail , String phone , String pass_word , String confirm , String role , String department){
+    private void AddUserToFireBase(ProgressDialog dialog) {
+        UserModel userModel = new UserModel(UId,user_name,e_mail,department,phoneNumber,role,password,imgUrl);
+        DocumentReference dr = fStore.collection("users").document(UId);
+        Map<String,Object> user = userModel.toMap();
+        dr.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                dialog.dismiss();
+                Intent intent = new Intent(AddActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+/*        if(requestCode == 1 && resultCode == RESULT_OK && data!= null){
+            resultUri = data.getData();
+            Picasso.get().load(resultUri).resize(120,120).centerCrop().into(profile_img);
+            //profile_img.setImageURI(resultUri);
+        }*/
+        try {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == 1) {
+                    Uri selectedImageUri = data.getData();
+                    // Get the path from the Uri
+                    final String path = getPathFromURI(selectedImageUri);
+                    if (path != null) {
+                        File f = new File(path);
+                        selectedImageUri = Uri.fromFile(f);
+                    }
+                    // Set the image in ImageView
+                    profile_img.setImageURI(selectedImageUri);
+                }
+            }
+        } catch (Exception e) {
+            Log.e("FileSelectorActivity", "File select error", e);
+        }
+    }
+
+    private  boolean validateInputs(String name , String e_mail , String phone , String pass_word , String confirm , String role , String department/*,String img_Url*/){
         if(name.isEmpty()){
             username.setError("User Name Required!");
             username.requestFocus();
@@ -184,6 +341,10 @@ public class AddActivity extends AppCompatActivity {
             Department.requestFocus();
             return true;
         }
+/*        if(img_Url.isEmpty()){
+            Toast.makeText(AddActivity.this,"please choose a profile image",Toast.LENGTH_SHORT).show();
+            return true;
+        }*/
         return false;
     }
     private void initComponent(){
@@ -198,6 +359,20 @@ public class AddActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
+
+        profile_img = findViewById(R.id.profile_image);
+        add_imgBtn = findViewById(R.id.fab_img);
+    }
+    public String getPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
     }
 
 }
