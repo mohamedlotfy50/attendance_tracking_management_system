@@ -49,5 +49,10 @@ public class PrefHelper {
 
         return  map;
     }
+    public void deleteKey(String key){
+        pref.remove(key);
+        pref.commit();
+
+    }
 
 }
