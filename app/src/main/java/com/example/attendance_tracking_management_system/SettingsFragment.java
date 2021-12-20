@@ -12,11 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class SettingsFragment extends Fragment {
     Button accountBtn , addBtn , logoutBtn;
     Intent toaccount , toadd ;
+    private PrefHelper pref;
 
+    private FirebaseAuth auth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,7 +31,7 @@ public class SettingsFragment extends Fragment {
         accountBtn = view.findViewById(R.id.accountBtn);
         addBtn = view.findViewById(R.id.addBtn);
         logoutBtn = view.findViewById(R.id.logoutBtn);
-
+        auth = FirebaseAuth.getInstance();
         accountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +51,10 @@ public class SettingsFragment extends Fragment {
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //logout logic
+                //TODO:perform Firebase logout and navigate to login on success
+                pref.deleteKey(ConstName.user);
+
+
             }
         });
 

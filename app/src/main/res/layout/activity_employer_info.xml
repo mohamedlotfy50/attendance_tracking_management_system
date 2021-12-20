@@ -7,7 +7,148 @@
     android:background="@drawable/gradient_background"
     android:padding="20dp">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Info"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="46dp"
+        android:src="@drawable/avatar"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="UserName"
+        android:textColor="@color/white"
+        android:textSize="24dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+
+    <TextView
+        android:id="@+id/department"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Deparment"
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintVertical_bias="0.139" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/delete"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="90dp"
+        app:iconTint="#FA2929"
+        android:layout_height="90dp"
+        android:backgroundTint="#E5EBF2"
+        android:gravity="center"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="50dp"
+        app:icon="@drawable/delete"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/phone"
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/phone"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:backgroundTint="#E5EBF2"
+        app:iconTint="#33AF25"
+        android:gravity="center"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
+        app:cornerRadius="50dp"
+        app:icon="@drawable/phone"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/materialButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Rounded" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/leaveHistory"
+        android:backgroundTint="#04BCFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_style"
+        android:text="Leaves History"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/attendance"
+        android:backgroundTint="#FF5F5F"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style"
+        android:text="Attendance"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaveHistory" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="545dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="325dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
