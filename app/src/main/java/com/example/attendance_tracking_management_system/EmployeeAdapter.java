@@ -65,7 +65,7 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
             viewHolder.getDeleteBtnBtn().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //deleteuser(user.email, user.password);
+                    deleteuser(user.email, user.password);
                 }
             });
             Picasso.get().load(current_employee.getImgUrl()).into(viewHolder.getProfile_img());
@@ -76,7 +76,7 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
         return view;
     }
 
-    /*private void deleteuser(String email, String password) {
+    private void deleteuser(String email, String password) {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         AuthCredential credential = EmailAuthProvider.getCredential(email, password);
@@ -100,7 +100,7 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
                         }
                     });
         }
-    }*/
+    }
 
     class ViewHolder{
         TextView userName, department;

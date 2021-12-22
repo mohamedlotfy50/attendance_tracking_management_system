@@ -17,7 +17,9 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -86,7 +88,78 @@ public class EmployeesFragment extends Fragment {
         return view;
     }
     private void dp2_Employees() {
-        db.collection("users").whereEqualTo("department","Dep 2").get()
+        db.collection("users").whereEqualTo("department","Dep 2").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    System.err.println("Listen failed:" + e);
+                    return;
+                }
+                if(snapshots.isEmpty()){
+                    Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+                }
+                if (snapshots != null) {
+                    for(DocumentSnapshot d : snapshots){
+                        UserModel employee = d.toObject(UserModel.class);
+                        employees.add(employee);
+                    }
+                    EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
+                    listView.setAdapter(adapter);
+                    dialog.dismiss();
+                }
+            }
+        });
+        /*db.collection("users").whereEqualTo("department","Dep 2").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+
+                            for(DocumentSnapshot d : list){
+                                UserModel employee = d.toObject(UserModel.class);
+                                employees.add(employee);
+                            }
+
+                            EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
+                            listView.setAdapter(adapter);
+                            dialog.dismiss();
+                        }
+                        else{
+                            Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+    }
+    private void dp1_Employees() {
+        db.collection("users").whereEqualTo("department","Dep 1").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    System.err.println("Listen failed:" + e);
+                    return;
+                }
+                if(snapshots.isEmpty()){
+                    Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+                }
+                if (snapshots != null) {
+                    for(DocumentSnapshot d : snapshots){
+                        UserModel employee = d.toObject(UserModel.class);
+                        employees.add(employee);
+                    }
+                    EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
+                    listView.setAdapter(adapter);
+                    dialog.dismiss();
+                }
+            }
+        });
+        /*db.collection("users").whereEqualTo("department","Dep 1").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -111,39 +184,31 @@ public class EmployeesFragment extends Fragment {
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
-    private void dp1_Employees() {
-                                db.collection("users").whereEqualTo("department","Dep 1").get()
-                                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                            @Override
-                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                                                if(!queryDocumentSnapshots.isEmpty()){
-                                                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-
-                                                    for(DocumentSnapshot d : list){
-                                                        UserModel employee = d.toObject(UserModel.class);
-                                                        employees.add(employee);
-                                                    }
-
-                                                    EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
-                                                    listView.setAdapter(adapter);
-                            dialog.dismiss();
-                        }
-                        else{
-                            Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+    private void AllEmployees() {
+        db.collection("users").whereEqualTo("role","Employee").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
+            public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    System.err.println("Listen failed:" + e);
+                    return;
+                }
+                if(snapshots.isEmpty()){
+                    Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+                }
+                if (snapshots != null) {
+                    for(DocumentSnapshot d : snapshots){
+                        UserModel employee = d.toObject(UserModel.class);
+                        employees.add(employee);
+                    }
+                    EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
+                    listView.setAdapter(adapter);
+                    dialog.dismiss();
+                }
             }
         });
-    }
-
-    private void AllEmployees() {
-        db.collection("users").whereEqualTo("role","Employee").get()
+        /*db.collection("users").whereEqualTo("role","Employee").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -170,7 +235,7 @@ public class EmployeesFragment extends Fragment {
                 Toast.makeText(getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
-        });
+        });*/
     }
 
     @Override
