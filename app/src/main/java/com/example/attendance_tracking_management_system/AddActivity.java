@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -39,7 +41,9 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 public class AddActivity extends AppCompatActivity {
@@ -168,70 +172,6 @@ public class AddActivity extends AppCompatActivity {
                                             Toast.makeText(getBaseContext() , e.getMessage() , Toast.LENGTH_LONG).show();
                                         }
                                     });
-                                    /*UploadTask uploadTask = filePath.putBytes(data);
-                                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                                        @Override
-                                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                                                if(!task.isSuccessful()){
-                                                    throw task.getException();
-                                                }
-                                            return filePath.getDownloadUrl();
-                                        }
-                                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Uri> task) {
-                                            if (task.isSuccessful()) {
-                                                Uri downloadUri = task.getResult();
-                                                imgUrl = downloadUri.toString();
-                                                Toast.makeText(AddActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }});*/
-
-                                    /*filePath.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onSuccess(UploadTask.TaskSnapshot ts) {
-                                            if(ts.getMetadata() != null && ts.getMetadata().getReference() != null){
-                                                Task<Uri> result = ts.getStorage().getDownloadUrl();
-                                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                    @Override
-                                                    public void onSuccess(Uri uri) {
-                                                        imgUrl = uri.toString();
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(AddActivity.this,"Image Upload Failed",Toast.LENGTH_SHORT).show();
-
-                                        }
-                                    });*/
-
-                                    /*uploadTask.addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(AddActivity.this,"Image Upload Failed",Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-
-                                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onSuccess(UploadTask.TaskSnapshot ts) {
-                                            if(ts.getMetadata() != null && ts.getMetadata().getReference() != null){
-                                                Task<Uri> result = ts.getStorage().getDownloadUrl();
-                                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                    @Override
-                                                    public void onSuccess(Uri uri) {
-                                                        imgUrl = uri.toString();
-
-
-
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    });*/
                                 }
 
 
@@ -265,12 +205,17 @@ public class AddActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-/*        if(requestCode == 1 && resultCode == RESULT_OK && data!= null){
+        if(requestCode == 1 && resultCode == RESULT_OK && data!= null){
             resultUri = data.getData();
-            Picasso.get().load(resultUri).resize(120,120).centerCrop().into(profile_img);
+            //Picasso.get().load(resultUri).resize(119,119).centerCrop().into(profile_img);
+            try {
+                profile_img.setImageBitmap(decodeSampledBitmapFromURI(resultUri,119 , 119));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             //profile_img.setImageURI(resultUri);
-        }*/
-        try {
+        }
+/*        try {
             if (resultCode == RESULT_OK) {
                 if (requestCode == 1) {
                     Uri selectedImageUri = data.getData();
@@ -286,7 +231,7 @@ public class AddActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Log.e("FileSelectorActivity", "File select error", e);
-        }
+        }*/
     }
 
     private  boolean validateInputs(String name , String e_mail , String phone , String pass_word , String confirm , String role , String department/*,String img_Url*/){
@@ -373,6 +318,38 @@ public class AddActivity extends AppCompatActivity {
         }
         cursor.close();
         return res;
+    }
+    Bitmap decodeSampledBitmapFromURI(Uri imageUri, int reqWidth, int reqHeight) throws FileNotFoundException {
+        final BitmapFactory.Options _Options = new BitmapFactory.Options();
+        _Options.inJustDecodeBounds = true;
+
+        InputStream inputStream = getContentResolver().openInputStream(imageUri);
+        BitmapFactory.decodeStream(inputStream, null, _Options);
+
+        _Options.inSampleSize = calculateInSampleSize(_Options, reqWidth, reqHeight);
+        _Options.inJustDecodeBounds = false;
+
+        // Note that we need to open the input stream again here
+        inputStream = getContentResolver().openInputStream(imageUri);
+        return BitmapFactory.decodeStream(inputStream, null, _Options);
+    }
+
+    //Given the bitmap size and View size calculate a subsampling size (powers of 2)
+    static int calculateInSampleSize( BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        int inSampleSize = 1;   //Default subsampling size
+        // See if image raw height and width is bigger than that of required view
+        if (options.outHeight > reqHeight || options.outWidth > reqWidth) {
+            //bigger
+            final int halfHeight = options.outHeight / 2;
+            final int halfWidth = options.outWidth / 2;
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) > reqHeight
+                    && (halfWidth / inSampleSize) > reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+        return inSampleSize;
     }
 
 }
