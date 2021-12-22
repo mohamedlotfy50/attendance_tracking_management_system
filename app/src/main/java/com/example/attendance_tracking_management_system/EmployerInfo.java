@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,12 +20,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class EmployerInfo extends AppCompatActivity {
-    final UserModel user;
+    UserModel user;
+    Intent intent;
     private Button phone,delete,leavesHistory,attendance;
+    TextView username , department;
 
-    public EmployerInfo(UserModel user) {
-        this.user = user;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,14 @@ public class EmployerInfo extends AppCompatActivity {
         delete = findViewById(R.id.delete);
         leavesHistory = findViewById(R.id.attendance);
         attendance = findViewById(R.id.leaveHistory);
+        username = findViewById(R.id.username);
+        department = findViewById(R.id.department);
+        intent = getIntent();
+        user = (UserModel) intent.getSerializableExtra("list user");
+
+        username.setText(user.getName());
+        department.setText(user.getDepartment());
+
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

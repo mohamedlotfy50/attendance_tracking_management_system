@@ -1,9 +1,10 @@
 package com.example.attendance_tracking_management_system;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserModel {
+public class UserModel implements Serializable {
     public String id,name,email,department,phone,role,password,imgUrl;
     public UserModel(){}
 

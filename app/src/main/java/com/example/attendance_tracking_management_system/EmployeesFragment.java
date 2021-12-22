@@ -1,6 +1,7 @@
 package com.example.attendance_tracking_management_system;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -80,6 +82,17 @@ public class EmployeesFragment extends Fragment {
             public void onClick(View v) {
                 employees.clear();
                 dp2_Employees();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                UserModel user = (UserModel) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getContext(),EmployerInfo.class);
+                intent.putExtra("list user",user);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 

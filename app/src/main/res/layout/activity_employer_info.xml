@@ -7,6 +7,17 @@
     android:background="@drawable/gradient_background"
     android:padding="20dp">
 
+    <ImageView
+        android:id="@+id/profile_img2"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="46dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/ic_icon11_101144" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -18,31 +29,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="46dp"
-        android:src="@drawable/avatar"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
     <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:text="UserName"
         android:textColor="@color/white"
         android:textSize="24dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_img2" />
 
 
     <TextView
@@ -65,7 +63,6 @@
         android:id="@+id/delete"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="90dp"
-        app:iconTint="#FA2929"
         android:layout_height="90dp"
         android:backgroundTint="#E5EBF2"
         android:gravity="center"
@@ -78,6 +75,7 @@
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:iconSize="35dp"
+        app:iconTint="#FA2929"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -90,8 +88,8 @@
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:layout_marginStart="64dp"
         android:backgroundTint="#E5EBF2"
-        app:iconTint="#33AF25"
         android:gravity="center"
         android:insetLeft="0dp"
         android:insetTop="0dp"
@@ -102,6 +100,7 @@
         app:iconGravity="textStart"
         app:iconPadding="0dp"
         app:iconSize="35dp"
+        app:iconTint="#33AF25"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/materialButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -111,11 +110,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/leaveHistory"
-        android:backgroundTint="#04BCFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_style"
+        android:backgroundTint="#04BCFF"
         android:text="Leaves History"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,11 +123,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/attendance"
-        android:backgroundTint="#FF5F5F"
-
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:background="@drawable/button_style"
+        android:backgroundTint="#FF5F5F"
         android:text="Attendance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
