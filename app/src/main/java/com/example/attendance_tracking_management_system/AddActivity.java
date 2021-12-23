@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,14 +63,14 @@ public class AddActivity extends AppCompatActivity {
     String imgUrl= "";
 
 
-    private FirebaseFirestore db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
         initComponent();
-        db = FirebaseFirestore.getInstance();
+
 
         ArrayAdapter<CharSequence> roleAdapter = ArrayAdapter.createFromResource(this,
                 R.array.role, android.R.layout.simple_spinner_item);
@@ -79,6 +80,14 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 role = Role.getSelectedItem().toString();
+                if(role.equals("Admin")){
+                    Department.setVisibility(View.GONE);
+                    //rl.setVisibility(View.VISIBLE);
+                    department = null;
+                }
+                if(role.equals("Employee")){
+                    Department.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -234,7 +243,7 @@ public class AddActivity extends AppCompatActivity {
         }*/
     }
 
-    private  boolean validateInputs(String name , String e_mail , String phone , String pass_word , String confirm , String role , String department/*,String img_Url*/){
+    private  boolean validateInputs(String name , String e_mail , String phone , String pass_word , String confirm , String role , String department){
         if(name.isEmpty()){
             username.setError("User Name Required!");
             username.requestFocus();
@@ -282,7 +291,7 @@ public class AddActivity extends AppCompatActivity {
             TextView errorText = (TextView)Department.getSelectedView();
             errorText.setError("");
             errorText.setTextColor(Color.RED);//just to highlight that this is an error
-            errorText.setText("A Role must be chosen!");//changes the selected item text to this
+            errorText.setText("A Department must be chosen!");//changes the selected item text to this
             Department.requestFocus();
             return true;
         }

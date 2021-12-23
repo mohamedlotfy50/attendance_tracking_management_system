@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class EmployerInfo extends AppCompatActivity {
-    UserModel user;
+    UserModel userModel;
     Intent intent;
     private Button phone,delete,leavesHistory,attendance;
     TextView username , department;
@@ -38,23 +38,23 @@ public class EmployerInfo extends AppCompatActivity {
         username = findViewById(R.id.username);
         department = findViewById(R.id.department);
         intent = getIntent();
-        user = (UserModel) intent.getSerializableExtra("list user");
+        userModel = (UserModel) intent.getSerializableExtra("list user");
 
-        username.setText(user.getName());
-        department.setText(user.getDepartment());
+        username.setText(userModel.name);
+        department.setText(userModel.department);
 
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+user.phone));
+                intent.setData(Uri.parse("tel:"+userModel.phone));
                 startActivity(intent);
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteuser(user.email, user.password);
+                deleteuser(userModel.email, userModel.password);
 
             }
         });

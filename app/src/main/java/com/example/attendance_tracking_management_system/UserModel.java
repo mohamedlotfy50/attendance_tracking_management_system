@@ -5,11 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserModel implements Serializable {
-    public String id,name,email,department,phone,role,password,imgUrl;
-    public UserModel(){}
+    final public String id,name,email,department,phone,role,password,imgUrl;
+    //public UserModel(){}
 
-
-    public String getId() {
+/*    public String getId() {
         return id;
     }
 
@@ -37,9 +36,7 @@ public class UserModel implements Serializable {
         return password;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
+    public String getImgUrl() { return imgUrl; }*/
 
 
     public  UserModel(String id, String name, String email, String department, String phone, String role, String password, String imgUrl){
@@ -73,7 +70,7 @@ public class UserModel implements Serializable {
          map.put("phone",phone);
          map.put("role",role);
          map.put("password",password);
-         map.put("profile_pic_URL",imgUrl);
+         map.put("imgUrl",imgUrl);
 
          return  map;
     }

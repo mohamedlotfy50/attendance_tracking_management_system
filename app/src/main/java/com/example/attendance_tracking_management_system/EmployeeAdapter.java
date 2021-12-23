@@ -31,9 +31,6 @@ import java.util.Map;
 public class EmployeeAdapter extends ArrayAdapter<UserModel> {
     List<UserModel> employees;
     Context context;
-    PrefHelper pref ;
-    UserModel user;
-    Map userMap ;
     public EmployeeAdapter(@NonNull Context context , @NonNull List<UserModel> employees){
         super(context,R.layout.employeelistview,R.id.username_txt,employees);
         this.employees = employees;
@@ -54,21 +51,24 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
         else{
             viewHolder = (ViewHolder)view.getTag();
         }
-        pref = new PrefHelper(getContext(),ConstName.sharedPref);
-        userMap = new HashMap();
-        userMap = pref.getMap(ConstName.user);
-        user = UserModel.fromMap(userMap);
+
         if(!employees.isEmpty()){
             UserModel current_employee = employees.get(position);
-            viewHolder.getUserName().setText(current_employee.getName());
-            viewHolder.getDepartment().setText(current_employee.getDepartment());
+            viewHolder.getUserName().setText(current_employee.name);
+            viewHolder.getDepartment().setText(current_employee.department);
             viewHolder.getDeleteBtnBtn().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    deleteuser(user.email, user.password);
+                    deleteuser(current_employee.email, current_employee.password);
                 }
             });
-            Picasso.get().load(current_employee.getImgUrl()).into(viewHolder.getProfile_img());
+            if(current_employee.imgUrl == ""){
+                viewHolder.getProfile_img().setImageResource(R.drawable.ic_icon11_101144);
+            }
+            else{
+                Picasso.get().load(current_employee.imgUrl).resize(73,83).into(viewHolder.getProfile_img());
+            }
+
         }
 
         /*.resize(74,84).centerCrop().*/
@@ -77,6 +77,7 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
     }
 
     private void deleteuser(String email, String password) {
+
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         AuthCredential credential = EmailAuthProvider.getCredential(email, password);
