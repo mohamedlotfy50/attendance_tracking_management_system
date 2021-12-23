@@ -6,9 +6,9 @@ import java.util.Map;
 
 public class Attendance {
     final String userID;
-    final Date date;
+    final String date;
 
-    public Attendance(String userID,Date date){
+    public Attendance(String userID,String date){
         this.userID=userID;
         this.date=date;
     }
@@ -16,7 +16,7 @@ public class Attendance {
 
     static public Attendance fromMap(HashMap map){
         return new Attendance((String) map.get("userID") ,
-                (Date) map.get("date")
+                (String) map.get("date")
                 );
     }
     public Map toMap(){

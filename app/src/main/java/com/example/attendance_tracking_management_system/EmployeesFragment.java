@@ -66,8 +66,10 @@ public class EmployeesFragment extends Fragment {
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                all.setBackgroundResource(R.drawable.rounded_button_dark);
+                dp1.setBackgroundResource(R.drawable.rounded_button);
+                dp2.setBackgroundResource(R.drawable.rounded_button);
                 employees.clear();
-
                 AllEmployees();
                 if(employees.isEmpty()){
                     listView.setAdapter(null);
@@ -78,16 +80,28 @@ public class EmployeesFragment extends Fragment {
         dp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                all.setBackgroundResource(R.drawable.rounded_button);
+                dp1.setBackgroundResource(R.drawable.rounded_button_dark);
+                dp2.setBackgroundResource(R.drawable.rounded_button);
                 employees.clear();
                 dp1_Employees();
+                if(employees.isEmpty()){
+                    listView.setAdapter(null);
+                }
             }
         });
 
         dp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                all.setBackgroundResource(R.drawable.rounded_button);
+                dp1.setBackgroundResource(R.drawable.rounded_button);
+                dp2.setBackgroundResource(R.drawable.rounded_button_dark);
                 employees.clear();
                 dp2_Employees();
+                if(employees.isEmpty()){
+                    listView.setAdapter(null);
+                }
             }
         });
 
@@ -135,6 +149,7 @@ public class EmployeesFragment extends Fragment {
                     listView.setAdapter(adapter);
                     dialog.dismiss();
                 }
+                getEmployees(snapshots,e);
             }
         });
         /*db.collection("users").whereEqualTo("department","Dep 2").get()
@@ -186,34 +201,9 @@ public class EmployeesFragment extends Fragment {
                     listView.setAdapter(adapter);
                     dialog.dismiss();
                 }
+                getEmployees(snapshots,e);
             }
         });
-        /*db.collection("users").whereEqualTo("department","Dep 1").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if(!queryDocumentSnapshots.isEmpty()){
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-
-                            for(DocumentSnapshot d : list){
-                                UserModel employee = d.toObject(UserModel.class);
-                                employees.add(employee);
-                            }
-
-                            EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
-                            listView.setAdapter(adapter);
-                            dialog.dismiss();
-                        }
-                        else{
-                            Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
-            }
-        });*/
     }
     private void AllEmployees() {
         db.collection("users").whereEqualTo("role","Employee").addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -236,36 +226,30 @@ public class EmployeesFragment extends Fragment {
                     listView.setAdapter(adapter);
                     dialog.dismiss();
                 }
+                getEmployees(snapshots,e);
             }
         });
-        /*db.collection("users").whereEqualTo("role","Employee").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if(!queryDocumentSnapshots.isEmpty()){
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
 
-                            for(DocumentSnapshot d : list){
-                                UserModel employee = d.toObject(UserModel.class);
-                                employees.add(employee);
-                            }
+    }
 
-                            EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
-                            listView.setAdapter(adapter);
-                            dialog.dismiss();
-                        }
-                        else{
-                            Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+    private void getEmployees(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e){
+        if (e != null) {
+            System.err.println("Listen failed:" + e);
+            return;
+        }
+        if(snapshots.isEmpty()){
+            Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+        }
+        if (snapshots != null) {
+            for(DocumentSnapshot d : snapshots){
+                Map<String,Object> userMap = d.getData();
+                UserModel employee = UserModel.fromMap(userMap);
+                employees.add(employee);
             }
-        });*/
+            EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
+            listView.setAdapter(adapter);
+            dialog.dismiss();
+        }
     }
 
     @Override

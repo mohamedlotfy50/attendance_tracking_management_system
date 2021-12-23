@@ -8,7 +8,7 @@
     tools:context=".UpdateAccountActivity">
 
     <Button
-        android:id="@+id/buttonAdd3"
+        android:id="@+id/closeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -20,10 +20,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonAdd2" />
+        app:layout_constraintStart_toEndOf="@+id/saveBtn" />
 
     <Button
-        android:id="@+id/buttonAdd2"
+        android:id="@+id/saveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -83,7 +83,7 @@
         android:isScrollContainer="true"
         android:orientation="vertical"
         android:weightSum="8"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAdd2"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image2">

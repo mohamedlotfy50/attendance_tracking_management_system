@@ -4,54 +4,53 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.errorprone.annotations.FormatString;
 
-public class HomeActivity extends AppCompatActivity {
+import java.util.Set;
 
+public class EmployeeHomeScreen extends AppCompatActivity {
     BottomNavigationView navBar;
-    private HomeFragment homeFragment;
-    private EmployeesFragment employeesFragment;
+    private UserMainView userHomeFragment;
     private SettingsFragment settingsFragment;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        navBar = findViewById(R.id.bottomNavView);
-        homeFragment = new HomeFragment();
-        employeesFragment = new EmployeesFragment();
+        setContentView(R.layout.activity_employee_home_screen);
+        userHomeFragment = new UserMainView();
         settingsFragment = new SettingsFragment();
+        navBar = findViewById(R.id.employeeBottomNav);
 
-
-
-            InitializeFragment(homeFragment);
+        InitializeFragment(userHomeFragment);
 
 
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.nav_home:
+                    case R.id.userMainView:
 
-                            InitializeFragment(homeFragment);
+                        InitializeFragment(userHomeFragment);
 
 
                         return true;
-                    case R.id.nav_employees:
-                        InitializeFragment(employeesFragment);
-                        return true;
-                    case R.id.nav_settings:
+
+                    case R.id.settingsFragment:
                         InitializeFragment(settingsFragment);
                         return true;
-            }
-            return true;
-        }});
+                }
+                return true;
+            }});
+
     }
     private void InitializeFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

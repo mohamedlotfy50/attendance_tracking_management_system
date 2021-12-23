@@ -88,7 +88,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     UserModel   currentUser =(UserModel) UserModel.fromMap(userMap);
                                     dialog.dismiss();
                                     pref.setMap(ConstName.user,currentUser.toMap());
-                                    Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                                    Intent intent ;
+                                    if(currentUser.isAdmin()){
+                                        intent = new Intent(LoginActivity.this,HomeActivity.class);
+                                    }else{
+
+                                        intent = new Intent(LoginActivity.this,EmployeeHomeScreen.class);
+
+                                    }
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
 
