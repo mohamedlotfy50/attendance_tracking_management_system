@@ -43,6 +43,8 @@
     <string name="department">Department</string>
     <string name="update_account">Save Changes</string>
     <string name="close">close</string>
+    <string name="employees">Employees</string>
+
 
     <string-array name="role">
         <item>Role</item>
