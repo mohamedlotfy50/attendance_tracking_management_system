@@ -65,13 +65,12 @@
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_landing_page.xml" value="0.264" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_login2.xml" value="0.2" />
-<<<<<<< HEAD
+
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_update_account.xml" value="0.15896739130434784" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/employeelistview.xml" value="0.15896739130434784" />
-=======
-        <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_main.xml" value="0.11499493414387031" />
->>>>>>> 9d13ce8a0dcacfc82ae384c5f7c4f8943e88a27b
+
+
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/employer_info.xml" value="0.1453125" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/fragment_employees.xml" value="0.11875" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/fragment_first.xml" value="0.152" />

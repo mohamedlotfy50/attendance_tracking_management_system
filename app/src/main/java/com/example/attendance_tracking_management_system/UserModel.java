@@ -89,6 +89,6 @@ public class UserModel implements Serializable {
          return  map;
     }
     public boolean isAdmin(){
-        return role.toLowerCase() == "admin";
+        return role.equals("Admin");
     }
 }

@@ -18,13 +18,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pref = new PrefHelper(getBaseContext(),ConstName.sharedPref);
         final boolean isLogged = pref.keyExists(ConstName.user);
-        user = UserModel.fromMap(pref.getMap(ConstName.user));
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
 
               final Intent intent;
                 if(isLogged){
+                    user = UserModel.fromMap(pref.getMap(ConstName.user));
                     if(user.isAdmin()){
                         intent = new Intent(MainActivity.this,HomeActivity.class);
                     }else{
