@@ -74,8 +74,9 @@ attendaceBtn.setOnClickListener(new View.OnClickListener() {
     public void onClick(View view) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         LocalDateTime now = LocalDateTime.now();
+
         final Attendance attend = new Attendance(user.id,dtf.format(now));
-        db.collection(ConstName.attendance).document().set(attend.toMap(),  SetOptions.merge());
+        db.collection(ConstName.attendance).document(String.format("%s%s",user.id,now.getDayOfYear())).set(attend.toMap(),  SetOptions.merge());
     }
 });
 
