@@ -62,6 +62,7 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
                     deleteuser(current_employee.email, current_employee.password);
                 }
             });
+
             if(current_employee.imgUrl == ""){
                 viewHolder.getProfile_img().setImageResource(R.drawable.ic_icon11_101144);
             }

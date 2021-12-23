@@ -7,11 +7,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Attendance_tracking_management_system">
+        <activity
+            android:name=".EmployeeHomeScreen"
+            android:exported="false" />
         <activity
             android:name=".EmployerInfo"
             android:exported="false" />
@@ -22,11 +27,6 @@
             android:name=".AddActivity"
             android:exported="true" />
         <activity
-            android:name=".user_info"
-            android:exported="true"
-            android:label="@string/title_activity_user_info"
-            android:theme="@style/Theme.Attendance_tracking_management_system.NoActionBar" />
-        <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:label="login"
@@ -36,6 +36,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:label="@string/app_name"
             tools:ignore="MissingClass">
             <intent-filter>

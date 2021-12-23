@@ -1,16 +1,18 @@
 package com.example.attendance_tracking_management_system;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,43 +21,39 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+public class EmployeeInfo extends Fragment {
 
-public class EmployerInfo extends AppCompatActivity {
-    UserModel userModel;
-    Intent intent;
+  final UserModel user;
     private Button phone,delete,leavesHistory,attendance;
     TextView username , department;
 
+    public EmployeeInfo(UserModel user) {
+        this.user = user;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_employer_info);
-        phone = findViewById(R.id.phone);
-        delete = findViewById(R.id.delete);
-        leavesHistory = findViewById(R.id.attendance);
-        attendance = findViewById(R.id.leaveHistory);
-        username = findViewById(R.id.username);
-        department = findViewById(R.id.department);
-        intent = getIntent();
-        userModel = (UserModel) intent.getSerializableExtra("list user");
-
-        username.setText(userModel.name);
-        department.setText(userModel.department);
-
+        phone = getView().findViewById(R.id.phone);
+        delete = getView().findViewById(R.id.delete);
+        leavesHistory = getView().findViewById(R.id.attendance);
+        attendance = getView().findViewById(R.id.leaveHistory);
+        username = getView().findViewById(R.id.username);
+        department = getView().findViewById(R.id.department);
+        username.setText(user.name);
+        department.setText(user.department);
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+userModel.phone));
+                intent.setData(Uri.parse("tel:"+user.phone));
                 startActivity(intent);
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteuser(userModel.email, userModel.password);
+                deleteuser(user.email, user.password);
 
             }
         });
@@ -85,5 +83,12 @@ public class EmployerInfo extends AppCompatActivity {
                         }
                     });
         }
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+
+        return inflater.inflate(R.layout.activity_employer_info, container, false);
     }
 }

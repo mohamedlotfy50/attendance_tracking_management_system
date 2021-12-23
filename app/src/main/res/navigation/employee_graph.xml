@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/employee_graph"
+    app:startDestination="@id/userMainView">
+
+    <fragment
+        android:id="@+id/userMainView"
+        android:name="com.example.attendance_tracking_management_system.UserMainView"
+        android:label="fragment_user_main_view"
+        tools:layout="@layout/fragment_user_main_view" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.attendance_tracking_management_system.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>

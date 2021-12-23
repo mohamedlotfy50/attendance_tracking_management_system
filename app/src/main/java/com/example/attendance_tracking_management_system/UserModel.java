@@ -2,7 +2,9 @@ package com.example.attendance_tracking_management_system;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+
 
 public class UserModel implements Serializable {
     final public String id,name,email,department,phone,role,password,imgUrl;
@@ -49,6 +51,17 @@ public class UserModel implements Serializable {
         this.password=password;
         this.imgUrl = imgUrl;
     }
+    public static UserModel init(){
+        return new UserModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "");
+    }
 
 
     static public UserModel fromMap(Map map){
@@ -59,7 +72,8 @@ public class UserModel implements Serializable {
                 (String) map.get("phone"),
                 (String) map.get("role"),
                 (String) map.get("password"),
-                (String) map.get("imgUrl"));
+                (String) map.get("profile_pic_URL"));
+
     }
      public Map toMap(){
          Map map = new HashMap();
@@ -75,6 +89,6 @@ public class UserModel implements Serializable {
          return  map;
     }
     public boolean isAdmin(){
-        return role == "admin";
+        return role.toLowerCase() == "admin";
     }
 }
