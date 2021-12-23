@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -110,11 +111,12 @@ public class UpdateAccountActivity extends AppCompatActivity {
                         String pass_word = password.getText().toString().trim();
                         String pass_con = passcon.getText().toString().trim();
                         if(!validatePassword(pass_word,pass_con)){
+                            FirebaseAuth auth = FirebaseAuth.getInstance();
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             AuthCredential credential = EmailAuthProvider
                                     .getCredential(userModel.email, userModel.password);
                             final ProgressDialog dialog1 = new ProgressDialog(UpdateAccountActivity.this);
-                            dialog1.setTitle("Update Account");
+                            dialog1.setTitle("Update Password");
                             dialog1.setMessage("Updating....");
                             dialog1.setCanceledOnTouchOutside(false);
                             dialog1.show();
@@ -125,8 +127,25 @@ public class UpdateAccountActivity extends AppCompatActivity {
                                         user.updatePassword(pass_word).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                Toast.makeText(UpdateAccountActivity.this , "Password Updated Successfully " , Toast.LENGTH_LONG).show();
-                                                dialog1.dismiss();
+                                                fStore.collection("users").document(userModel.id).update("password",pass_word)
+                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                Toast.makeText(UpdateAccountActivity.this , "Password Updated Successfully" , Toast.LENGTH_LONG).show();
+                                                                dialog1.dismiss();
+                                                                auth.signOut();
+                                                                pref.deleteKey(ConstName.user);
+                                                                Intent intent = new Intent(UpdateAccountActivity.this, LoginActivity.class);
+                                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                                startActivity(intent);
+                                                            }
+                                                        }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        dialog1.dismiss();
+                                                        Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override
