@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SettingsFragment extends Fragment {
     Button accountBtn , addBtn , logoutBtn;
-    Intent toaccount , toadd ;
+    Intent intent  ;
     private PrefHelper pref;
 
     private FirebaseAuth auth;
@@ -35,24 +35,27 @@ public class SettingsFragment extends Fragment {
         accountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toaccount = new Intent(getContext(), UpdateAccountActivity.class);
-                startActivity(toaccount);
+                intent = new Intent(getContext(), UpdateAccountActivity.class);
+                startActivity(intent);
             }
         });
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toadd = new Intent(getContext(), AddActivity.class);
-                startActivity(toadd);
+                intent = new Intent(getContext(), AddActivity.class);
+                startActivity(intent);
             }
         });
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO:perform Firebase logout and navigate to login on success
+
+                auth.signOut();
                 pref.deleteKey(ConstName.user);
+                intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
 
 
             }
