@@ -60,15 +60,15 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
         user = UserModel.fromMap(userMap);
         if(!employees.isEmpty()){
             UserModel current_employee = employees.get(position);
-            viewHolder.getUserName().setText(current_employee.getName());
-            viewHolder.getDepartment().setText(current_employee.getDepartment());
+            viewHolder.getUserName().setText(current_employee.name);
+            viewHolder.getDepartment().setText(current_employee.department);
             viewHolder.getDeleteBtnBtn().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     deleteuser(user.email, user.password);
                 }
             });
-            Picasso.get().load(current_employee.getImgUrl()).into(viewHolder.getProfile_img());
+            Picasso.get().load(current_employee.imgUrl).into(viewHolder.getProfile_img());
         }
 
         /*.resize(74,84).centerCrop().*/

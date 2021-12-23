@@ -7,7 +7,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class EmployeesFragment extends Fragment {
 
@@ -89,10 +95,18 @@ public class EmployeesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 UserModel user = (UserModel) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(getContext(),EmployerInfo.class);
-                intent.putExtra("list user",user);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                Log.i("the user data is",String.format("username: %s,email: %s,phone: %s,id: %s,password: %s",user.name,user.email,user.phone,user.id,user.password));
+                Fragment fragment = new EmployeeInfo(user);
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, fragment);
+                fragmentTransaction.commit();
+
+//
+//                Intent intent = new Intent(getContext(),EmployerInfo.class);
+//                intent.putExtra("list user",  user);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
             }
         });
 
@@ -113,7 +127,8 @@ public class EmployeesFragment extends Fragment {
                 }
                 if (snapshots != null) {
                     for(DocumentSnapshot d : snapshots){
-                        UserModel employee = d.toObject(UserModel.class);
+                        Map<String, Object> userMap = d.getData();
+                        UserModel employee = UserModel.fromMap(userMap);
                         employees.add(employee);
                     }
                     EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
@@ -163,7 +178,8 @@ public class EmployeesFragment extends Fragment {
                 }
                 if (snapshots != null) {
                     for(DocumentSnapshot d : snapshots){
-                        UserModel employee = d.toObject(UserModel.class);
+                        Map<String, Object> userMap = d.getData();
+                        UserModel employee = UserModel.fromMap(userMap);
                         employees.add(employee);
                     }
                     EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);
@@ -212,7 +228,8 @@ public class EmployeesFragment extends Fragment {
                 }
                 if (snapshots != null) {
                     for(DocumentSnapshot d : snapshots){
-                        UserModel employee = d.toObject(UserModel.class);
+                        Map<String, Object> userMap = d.getData();
+                        UserModel employee = UserModel.fromMap(userMap);
                         employees.add(employee);
                     }
                     EmployeeAdapter adapter = new EmployeeAdapter(getContext(),employees);

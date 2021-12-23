@@ -51,7 +51,7 @@ public class PrefHelper {
     }
     public void deleteKey(String key){
         pref.remove(key);
-        pref.commit();
+        pref.apply();
 
     }
 

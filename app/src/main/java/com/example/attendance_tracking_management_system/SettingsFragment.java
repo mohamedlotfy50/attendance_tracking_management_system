@@ -32,6 +32,7 @@ public class SettingsFragment extends Fragment {
         addBtn = view.findViewById(R.id.addBtn);
         logoutBtn = view.findViewById(R.id.logoutBtn);
         auth = FirebaseAuth.getInstance();
+        pref = new PrefHelper(getActivity().getBaseContext(),ConstName.sharedPref);
         accountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
