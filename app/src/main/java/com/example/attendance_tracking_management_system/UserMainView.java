@@ -1,6 +1,5 @@
 package com.example.attendance_tracking_management_system;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -77,22 +76,10 @@ attendaceBtn.setOnClickListener(new View.OnClickListener() {
         LocalDateTime now = LocalDateTime.now();
 
         final Attendance attend = new Attendance(user.id,dtf.format(now));
-        db.collection(ConstName.attendance).document(String.format("%s%s",user.id, now.getDayOfYear())).set(attend.toMap(),  SetOptions.merge());
-    }
-
+        db.collection(ConstName.attendance).document(String.format("%s%s",user.id,
+                now.getDayOfYear())).set(attend.toMap(), SetOptions.merge());    }
 });
-        leaveRequestBtn.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View view) {
-                Intent intent  = new Intent(getActivity(),leave_request.class);
 
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-
-            }
-
-        });
 
     }
 }
