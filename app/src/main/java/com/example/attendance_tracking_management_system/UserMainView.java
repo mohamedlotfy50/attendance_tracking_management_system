@@ -79,6 +79,18 @@ attendaceBtn.setOnClickListener(new View.OnClickListener() {
         db.collection(ConstName.attendance).document(String.format("%s%s",user.id,
                 now.getDayOfYear())).set(attend.toMap(), SetOptions.merge());    }
 });
+        leaveRequestBtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(getActivity(),leave_request.class);
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            }
+
+        });
 
 
     }
