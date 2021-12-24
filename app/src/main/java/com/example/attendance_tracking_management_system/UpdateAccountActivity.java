@@ -37,10 +37,11 @@ public class UpdateAccountActivity extends AppCompatActivity {
     UserModel userModel;
     Map userMap ;
 
-    EditText username , phone  ;
-    String user_name, phone_num, pass_word, pass_con;
+    EditText username , phone ,passwordChange ;
     Button save , close, reset;
     private final String TAG = "log";
+    private FirebaseAuth auth ;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,134 +51,100 @@ public class UpdateAccountActivity extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         pref = new PrefHelper(this,ConstName.sharedPref);
         userMap = new HashMap();
+        db = FirebaseFirestore.getInstance();
         userMap = pref.getMap(ConstName.user);
         userModel = UserModel.fromMap(userMap);
+        auth =FirebaseAuth.getInstance();
+        passwordChange = findViewById(R.id.resetpassword);
+        username = findViewById(R.id.username_edttxt);
 
+        phone = findViewById(R.id.phonenum_edttxt);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                user_name = username.getText().toString();
-                phone_num = phone.getText().toString();
+                if(passwordChange.getText()!=null){
 
-                if(!validateInputs(user_name,phone_num)){
-                    final ProgressDialog dialog = new ProgressDialog(UpdateAccountActivity.this);
-                    dialog.setTitle("Update Account");
-                    dialog.setMessage("Updating....");
-                    dialog.setCanceledOnTouchOutside(false);
-                    dialog.show();
-                    fStore.collection("users").document(userModel.id).update("name",username.getText().toString(),
-                            "phone",phone.getText().toString())
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(UpdateAccountActivity.this , "User Updated Successfully" , Toast.LENGTH_LONG).show();
-                                    dialog.dismiss();
-                                    finish();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            dialog.dismiss();
-                            Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+
+changePassword(username.getText().toString(),phone.getText().toString(),passwordChange.getText().toString());
+
+
+                }else{
+
+                    changeData(username.getText().toString(),phone.getText().toString(),passwordChange.getText().toString());
                 }
+
             }
         });
 
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final AlertDialog.Builder passResetDialog = new AlertDialog.Builder(view.getContext());
-                passResetDialog.setTitle("Reset Password");
-                passResetDialog.setMessage("Enter new Password > 6 Characters");
 
-                LinearLayout l = new LinearLayout(view.getContext());
-                l.setOrientation(LinearLayout.VERTICAL);
 
-                final EditText password = new EditText(view.getContext());
-                password.setHint("Password");
-                l.addView(password);
 
-                final EditText passcon = new EditText(view.getContext());
-                passcon.setHint("Confirm Password");
-                l.addView(passcon);
 
-                passResetDialog.setView(l);
+    }
+   private void changePassword(String username,String phoneNumber,String newPassword){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                passResetDialog.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+
+        AuthCredential credential = EmailAuthProvider
+                .getCredential(userModel.email, userModel.password);
+
+        if(credential==null){
+            Log.d(TAG, "cred is null");
+
+        }
+        if(user == null){
+
+            Log.d(TAG, "user is null");
+
+
+        }
+
+
+        user.reauthenticate(credential)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        String pass_word = password.getText().toString().trim();
-                        String pass_con = passcon.getText().toString().trim();
-                        if(!validatePassword(pass_word,pass_con)){
-                            FirebaseAuth auth = FirebaseAuth.getInstance();
-                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            AuthCredential credential = EmailAuthProvider
-                                    .getCredential(userModel.email, userModel.password);
-                            final ProgressDialog dialog1 = new ProgressDialog(UpdateAccountActivity.this);
-                            dialog1.setTitle("Update Password");
-                            dialog1.setMessage("Updating....");
-                            dialog1.setCanceledOnTouchOutside(false);
-                            dialog1.show();
-                            user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        user.updatePassword(pass_word).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-                                                fStore.collection("users").document(userModel.id).update("password",pass_word)
-                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                            @Override
-                                                            public void onSuccess(Void unused) {
-                                                                Toast.makeText(UpdateAccountActivity.this , "Password Updated Successfully" , Toast.LENGTH_LONG).show();
-                                                                dialog1.dismiss();
-                                                                auth.signOut();
-                                                                pref.deleteKey(ConstName.user);
-                                                                Intent intent = new Intent(UpdateAccountActivity.this, LoginActivity.class);
-                                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                                startActivity(intent);
-                                                            }
-                                                        }).addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
-                                                        dialog1.dismiss();
-                                                        Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-                                                    }
-                                                });
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(UpdateAccountActivity.this , e.getMessage().toString() , Toast.LENGTH_LONG).show();
-                                                dialog1.dismiss();
-                                            }
-                                        });
-                                    }
-                                    else{
-                                        Toast.makeText(UpdateAccountActivity.this , task.getException().toString() , Toast.LENGTH_LONG).show();
-                                        dialog1.dismiss();
-                                    }
+                                    if (task.isSuccessful()) {
+                                        changeData(username,phoneNumber,newPassword);
+                                        Log.d(TAG, "password updated");
 
+                                    } else {
+                                        Log.d(TAG, "Error password not updated");
+                                    }
                                 }
                             });
-                        }
-                        else {
-                            Toast.makeText(getBaseContext(),"Retry!!",Toast.LENGTH_LONG).show();
+                        } else {
+                            Log.d(TAG, "Error auth failed");
                         }
                     }
-                }).setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                });
+    }
 
-                    }
-                }).create().show();
+    private void changeData(String userName,String phoneNumber,String changedPass){
+        Log.d(TAG, String.format("name %s phone %s pass %s",userName,phoneNumber,changedPass));
+        String newName = userModel.name,newEmail=userModel.email,newPhone=userModel.phone,newPassword =userModel.password ;
+        if(userName !=null){
+newName =userName;
+        }
+        if(phoneNumber   !=null){
+phoneNumber = newPhone;
+        }
+        if(changedPass  !=null){
+            newPassword = changedPass;
+        }
 
-            }
-        });
 
 
+        final UserModel newModel = new UserModel(userModel.id,newName,newEmail,userModel.department,newPhone,userModel.role,newPassword,userModel.imgUrl);
+        db.collection("users")
+                .document(userModel.id)
+                .update(newModel.toMap());
+        pref.setMap(ConstName.user,newModel.toMap());
+        Log.d(TAG, "Data changed");
 
     }
     private void initComponents(){
@@ -186,7 +153,6 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
         save = findViewById(R.id.saveBtn);
         close =findViewById(R.id.closeBtn);
-        reset = findViewById(R.id.resetBtn);
     }
     private  boolean validatePassword( String pass_word , String confirm){
         if(pass_word.isEmpty()){

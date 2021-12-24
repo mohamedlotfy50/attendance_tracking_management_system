@@ -84,7 +84,7 @@ public class UserModel implements Serializable {
          map.put("phone",phone);
          map.put("role",role);
          map.put("password",password);
-         map.put("imgUrl",imgUrl);
+         map.put("profile_pic_URL",imgUrl);
 
          return  map;
     }
