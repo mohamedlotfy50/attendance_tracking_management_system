@@ -109,12 +109,16 @@ public class EmployeesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 UserModel user = (UserModel) adapterView.getItemAtPosition(i);
-                Log.i("the user data is",String.format("username: %s,email: %s,phone: %s,id: %s,password: %s",user.name,user.email,user.phone,user.id,user.password));
+                Intent intent = new Intent(getContext(), EmployerInfo.class);
+                intent.putExtra("list user",user);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+/*                Log.i("the user data is",String.format("username: %s,email: %s,phone: %s,id: %s,password: %s",user.name,user.email,user.phone,user.id,user.password));
                 Fragment fragment = new EmployeeInfo(user);
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, fragment);
-                fragmentTransaction.commit();
+                fragmentTransaction.commit();*/
 
             }
         });
@@ -124,7 +128,8 @@ public class EmployeesFragment extends Fragment {
         return view;
     }
     private void dp2_Employees() {
-        db.collection("users").whereEqualTo("department","Dep 2").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("users").whereEqualTo("role","Employee")
+                .whereEqualTo("department","Dep 2").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
                 getEmployees(snapshots,e);
@@ -133,7 +138,8 @@ public class EmployeesFragment extends Fragment {
 
     }
     private void dp1_Employees() {
-        db.collection("users").whereEqualTo("department","Dep 1").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("users").whereEqualTo("role","Employee")
+                .whereEqualTo("department","Dep 1").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
                 getEmployees(snapshots,e);

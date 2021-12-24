@@ -50,7 +50,7 @@
 
 
     <ImageView
-        android:id="@+id/image3"
+        android:id="@+id/imgHome"
         android:layout_width="84dp"
         android:layout_height="87dp"
         android:layout_marginTop="29dp"

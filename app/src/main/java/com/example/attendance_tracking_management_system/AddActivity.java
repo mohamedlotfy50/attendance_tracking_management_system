@@ -317,17 +317,7 @@ public class AddActivity extends AppCompatActivity {
         profile_img = findViewById(R.id.profile_image);
         add_imgBtn = findViewById(R.id.fab_img);
     }
-    public String getPathFromURI(Uri contentUri) {
-        String res = null;
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-        if (cursor.moveToFirst()) {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            res = cursor.getString(column_index);
-        }
-        cursor.close();
-        return res;
-    }
+
     Bitmap decodeSampledBitmapFromURI(Uri imageUri, int reqWidth, int reqHeight) throws FileNotFoundException {
         final BitmapFactory.Options _Options = new BitmapFactory.Options();
         _Options.inJustDecodeBounds = true;
@@ -343,7 +333,6 @@ public class AddActivity extends AppCompatActivity {
         return BitmapFactory.decodeStream(inputStream, null, _Options);
     }
 
-    //Given the bitmap size and View size calculate a subsampling size (powers of 2)
     static int calculateInSampleSize( BitmapFactory.Options options, int reqWidth, int reqHeight) {
         int inSampleSize = 1;   //Default subsampling size
         // See if image raw height and width is bigger than that of required view

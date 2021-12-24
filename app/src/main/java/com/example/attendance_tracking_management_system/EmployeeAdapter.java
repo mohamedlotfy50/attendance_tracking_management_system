@@ -63,7 +63,7 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
                 }
             });
 
-            if(current_employee.imgUrl == ""){
+            if(current_employee.imgUrl == ""||current_employee.imgUrl == null ){
                 viewHolder.getProfile_img().setImageResource(R.drawable.ic_icon11_101144);
             }
             else{
@@ -72,7 +72,7 @@ public class EmployeeAdapter extends ArrayAdapter<UserModel> {
 
         }
 
-        /*.resize(74,84).centerCrop().*/
+
 
         return view;
     }

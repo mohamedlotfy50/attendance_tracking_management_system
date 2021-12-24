@@ -72,7 +72,7 @@ public class UserModel implements Serializable {
                 (String) map.get("phone"),
                 (String) map.get("role"),
                 (String) map.get("password"),
-                (String) map.get("profile_pic_URL"));
+                (String) map.get("imgUrl"));
 
     }
      public Map toMap(){

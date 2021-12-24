@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
 
               final Intent intent;
+                //intent = new Intent(MainActivity.this,HomeActivity.class);
                 if(isLogged){
                     user = UserModel.fromMap(pref.getMap(ConstName.user));
                     if(user.isAdmin()){
