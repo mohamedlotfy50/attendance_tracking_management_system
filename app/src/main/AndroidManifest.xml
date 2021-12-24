@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Attendance_tracking_management_system">
         <activity
+            android:name=".leave_request"
+            android:exported="false" />
+        <activity
             android:name=".EmployeeHomeScreen"
             android:exported="false" />
         <activity

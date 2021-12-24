@@ -63,14 +63,12 @@
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_employer_info.xml" value="0.264" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_home.xml" value="0.176" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_landing_page.xml" value="0.264" />
+        <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_leave_request.xml" value="0.17916666666666667" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_login2.xml" value="0.2" />
-
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/activity_update_account.xml" value="0.15896739130434784" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/employeelistview.xml" value="0.15896739130434784" />
-
-
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/employer_info.xml" value="0.1453125" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/fragment_employees.xml" value="0.11875" />
         <entry key="..\:/projects/attendance_tracking_management_system/app/src/main/res/layout/fragment_first.xml" value="0.152" />
@@ -82,7 +80,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

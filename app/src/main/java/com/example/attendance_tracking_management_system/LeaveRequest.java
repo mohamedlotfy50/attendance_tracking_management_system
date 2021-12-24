@@ -8,9 +8,9 @@ public class LeaveRequest {
    final  String userID,message;
    String response;
    int status;// the status has three values 0 for no response , 1 for acceptance and 2 for rejection
-   final Date date;
+   final String date;
 
-   public LeaveRequest(String userID,String message,String response, int status,Date date){
+   public LeaveRequest(String userID,String message,String response, int status,String date){
        this.userID=userID;
        this.message=message;
        this.response=response;
@@ -19,7 +19,7 @@ public class LeaveRequest {
    }
     static public LeaveRequest fromMap(HashMap map){
         return new LeaveRequest((String) map.get("userID") ,(String) map.get("message"),(String) map.get("response"),(int) map.get("status"),
-                (Date) map.get("date")
+                (String) map.get("date")
         );
     }
     public Map toMap(){
