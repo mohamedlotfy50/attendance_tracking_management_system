@@ -81,8 +81,8 @@ public class HomeFragment extends Fragment {
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
 
-/*        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDateTime now = LocalDateTime.now();*/
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
 
         db.collection("users").whereEqualTo("role","Employee").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -92,12 +92,15 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot snapshots, @Nullable FirebaseFirestoreException e) {
                         getAttendance(snapshots,e);
-                        int attend_total = attendance.size();
-                        int employees_total = employees.size();
-                        int absent_total = employees_total - attend_total;
+                        if(!employees.isEmpty() && !attendance.isEmpty()){
+                            int attend_total = attendance.size();
+                            int employees_total = employees.size();
+                            int absent_total = employees_total - attend_total;
 
-                        attended.setText(attend_total+ "");
-                        absent.setText(absent_total +"");
+                            attended.setText(attend_total+ "");
+                            absent.setText(absent_total +"");
+                        }
+
                     }
                 });
             }
